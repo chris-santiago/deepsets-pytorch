@@ -116,32 +116,32 @@ The error is exactly zero (up to floating-point precision) because the pooling o
 
 The `pool_type` argument controls how individual element representations are aggregated:
 
-=== "sum"
+`"sum"`
 
-    ```python
-    model_sum = DeepSetsInvariant(
-        input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
-        pool_type='sum'
-    )
-    ```
+```python
+model_sum = DeepSetsInvariant(
+    input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
+    pool_type='sum'
+)
+```
 
-=== "max"
+`"max"`
 
-    ```python
-    model_max = DeepSetsInvariant(
-        input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
-        pool_type='max'
-    )
-    ```
+```python
+model_max = DeepSetsInvariant(
+    input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
+    pool_type='max'
+)
+```
 
-=== "mean"
+`"mean"`
 
-    ```python
-    model_mean = DeepSetsInvariant(
-        input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
-        pool_type='mean'
-    )
-    ```
+```python
+model_mean = DeepSetsInvariant(
+    input_dim=4, phi_hidden_dims=[32], rho_hidden_dims=[32], output_dim=1,
+    pool_type='mean'
+)
+```
 
 ---
 
