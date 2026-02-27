@@ -1,4 +1,4 @@
-💩 :shit: *None of this was written by a human*
+:shit: *None of this was written by a human*
 
 # Deep Sets: PyTorch Implementation
 
