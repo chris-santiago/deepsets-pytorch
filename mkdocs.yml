@@ -1,7 +1,7 @@
 site_name: Deep Sets
 site_description: PyTorch implementation of Deep Sets — permutation invariant and equivariant neural networks on sets.
 site_author: Deep Sets Contributors
-repo_url: https://github.com/chrissantiago/deepsets
+repo_url: https://github.com/chris-santiago/deepsets-pytorch
 docs_dir: docs
 
 theme:

@@ -145,4 +145,4 @@ The `pool_type` argument controls how individual element representations are agg
 
 ---
 
-See [documentation]() for more.
+See [documentation](https://chris-santiago.github.io/deepsets-pytorch/) for more.
