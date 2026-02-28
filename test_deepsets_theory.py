@@ -675,6 +675,22 @@ def test_context_in_rho_false():
     return max_error < ATOL, f"max invariance error={max_error:.2e}"
 
 
+def test_conditioning_concat_empty_phi():
+    """
+    fusion_type='concat', phi_hidden_dims=[]: phi is identity over
+    (input_dim + context_dim), so phi_out_dim must equal input_dim + context_dim.
+    Regression test for the dimension bug where phi_out_dim was incorrectly set
+    to input_dim, causing a shape mismatch in rho's first linear layer.
+    """
+    model = DeepSetsConditional(4, 3, [], [16], 2, fusion_type='concat')
+    model.eval()
+    x   = torch.randn(2, 5, 4)
+    ctx = torch.randn(2, 3)
+    with torch.no_grad():
+        out = model(x, ctx)
+    return out.shape == (2, 2), f"expected (2, 2), got {tuple(out.shape)}"
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # 7.  INPUT VALIDATION  —  error messages for bad arguments
 # ══════════════════════════════════════════════════════════════════════════════
@@ -748,6 +764,7 @@ TESTS = [
     ("Conditioning: context changes output",           test_conditioning_changes_output),
     ("Conditioning: deterministic for same (x,z)",     test_same_context_same_output),
     ("Conditioning: context_in_rho=False",             test_context_in_rho_false),
+    ("Conditioning: concat + empty phi (dim bug)",     test_conditioning_concat_empty_phi),
 
     # Input validation
     ("Validation: bad pool_type raises ValueError",    test_invalid_pool_type_raises),
@@ -768,7 +785,7 @@ def run_all():
         ("Permutation Equivariance",            4),
         ("Masking",                             5),
         ("Universal Approximation (Theorem 2)", 6),
-        ("Conditioning",                        3),
+        ("Conditioning",                        4),
         ("Input Validation",                    3),
     ]
 

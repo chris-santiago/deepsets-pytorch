@@ -308,7 +308,12 @@ class DeepSetsConditional(nn.Module):
             self.context_proj = nn.Linear(context_dim, input_dim)
             self.phi = self._make_phi(input_dim, phi_hidden_dims)
 
-        phi_out_dim = phi_hidden_dims[-1] if phi_hidden_dims else input_dim
+        if phi_hidden_dims:
+            phi_out_dim = phi_hidden_dims[-1]
+        elif fusion_type == 'concat':
+            phi_out_dim = input_dim + context_dim
+        else:
+            phi_out_dim = input_dim
 
         # --- ρ network ---
         rho_in_dim = phi_out_dim + (context_dim if context_in_rho else 0)
